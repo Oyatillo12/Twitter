@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import NavbarLinks from './NavbarLinks'
 import { BookmarksIcon, Dots, ExploreIcon, HomeIcon, ListsIcon, MassagesIcon, MoreICon, NotificationsIcon, ProfileFillIcon } from '../assets/images/Icons'
 import Button from './Button'
-import Avatar from '../assets/images/avatar.svg'
+import Avatar from '../assets/images/avatar.png'
 import Modal from './Modal'
 
 function Navbar() {
