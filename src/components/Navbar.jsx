@@ -72,7 +72,7 @@ function Navbar() {
   return (
     <>
       <div className='w-[25%] relative border-r-[#D8D8D8] border-r-[1px] h-[100vh] overflow-x-hidden overflow-y-auto pt-[31px] pr-[15px] pl-[120px]'>
-        <Link>
+        <Link to={'/'}>
           <img className='mb-[49px] ' src={Logo} alt="site logo" width={40} height={33} />
         </Link>
 
