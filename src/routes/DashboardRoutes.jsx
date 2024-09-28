@@ -18,6 +18,7 @@ function DashboardRoutes() {
                     <Route path='/lists' element={<Lists />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/more' element={<More />} />
+                    <Route path='*' element={<h2 className='text-2xl mt-[60px] text-center'>Not found page let's try that again. </h2>} />
                 </Routes>
             </div>
             <SidaBar />
