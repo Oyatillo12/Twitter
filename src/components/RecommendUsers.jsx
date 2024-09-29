@@ -22,7 +22,7 @@ function RecommendUsers() {
       <h3 className='font-bold text-[24px] leading-8 mb-[25px]'>You might like</h3>
         <ul className='space-y-[25px]'>
             {users.map(item => (
-                <li className='flex items-center justify-between'>
+                <li key={item.id} className='flex items-center justify-between'>
                     <div className='flex items-center gap-[10px]'>
                         <img className='object-cover w-[50px] h-[50px] rounded-[50%]' height={50} width={50} src={item.avatar} alt={item.name}/>
                         <div>

@@ -8,7 +8,7 @@ function DashboardRoutes() {
     return (
         <div className='flex'>
             <Navbar />
-            <div className='w-[50%]'>
+            <div className='w-[45%]'>
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/explore' element={<Explore />} />

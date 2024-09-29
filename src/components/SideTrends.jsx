@@ -10,7 +10,7 @@ function SideTrends() {
             tweets:'50.4K Tweets'
         },
         {
-            id:3,
+            id:2,
             trending:"Trending in Germany",
             title: 'Revolution',
             tweets:'50.4K Tweets'

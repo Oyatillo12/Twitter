@@ -12,7 +12,7 @@ function SidaBar() {
 
 
   return (
-    <div className='pl-7 w-[30%] pr-[60px] pt-5 overflow-y-auto h-[100vh] pb-[50px]'>
+    <div className='pl-7 w-[30%] pr-[60px] pt-5 overflow-y-auto h-[100vh] pb-[50px] border-l-[#D8D8D8] border-l-[1px]'>
       {activeSidebar == '/' &&
         <div>
           <SearchSideBar />
@@ -39,7 +39,6 @@ function SidaBar() {
         <img  src={ImagesBlog} alt='blog'  className='w-[100%] rounded-lg h-[178px] mt-[11px] object-cover' width={'100%'} height={178} />
           <RecommendUsers />
           <SideTrends />
-
       </div>}
     </div>
   )

@@ -71,7 +71,7 @@ function Navbar() {
   }
   return (
     <>
-      <div className='w-[20%] relative border-r-[#D8D8D8] border-r-[1px] h-[100vh] overflow-x-hidden overflow-y-auto pt-[31px] pr-[15px] pl-[90px]'>
+      <div className='w-[25%] relative border-r-[#D8D8D8] border-r-[1px] h-[100vh] overflow-x-hidden overflow-y-auto pt-[31px] pr-[15px] pl-[120px]'>
         <Link to={'/'}>
           <img className='mb-[49px] ' src={Logo} alt="site logo" width={40} height={33} />
         </Link>
@@ -81,7 +81,7 @@ function Navbar() {
             navbarList.map(item => <NavbarLinks key={item.id} item={item} />)
           }
         </div>
-        <Button extraStyle={"w-full py-[15px] mt-[30px] "} type={"button"}>Tweet</Button>
+        <Button extraStyle={"w-[230px] py-[15px] mt-[30px] "} type={"button"}>Tweet</Button>
         <div className='flex items-center absolute bottom-7 '>
           <img src={Avatar} alt="icon" width={50} height={50} />
           <div className='ml-[10px] mr-[40px]'>
