@@ -9,6 +9,8 @@ import { Context } from '../context/AuthContext'
 function Profile() {
   const navigate = useNavigate()
 const {profile, setProfile} = useContext(Context)
+const user = JSON.parse(localStorage.getItem('token'))
+
   
   const [profileImg, setProfileImg] = useState(EmptyImg)
   const [avatar, setAvatar] = useState(AvatarImg)
@@ -58,7 +60,7 @@ const {profile, setProfile} = useContext(Context)
       <div className='pl-[31px] flex items-center space-x-10 pt-[22px] pb-[15px]'>
         <button onClick={() => navigate(-1)}><BackIcon /></button>
         <div className='flex flex-col'>
-          <strong className='text-[20px] mb-[2px] leading-[26px] font-bold'>{profile?.login}</strong>
+          <strong className='text-[20px] mb-[2px] leading-[26px] font-bold'>{profile?.login ? profile?.login : user.login}</strong>
           <span className='text-[16px] leading-[21px] text-black opacity-60'>1,070 Tweets</span>
         </div>
       </div>
@@ -68,8 +70,8 @@ const {profile, setProfile} = useContext(Context)
         <button onClick={() => setEditModal(true)} className='absolute right-[25px] rounded-[50px] duration-300 hover:bg-[#0f14191a] bottom-[15px] border-[#00000066] border-[1px] w-[120px] py-[10px] text-[18px] leading-6'>Edit profile</button>
       </div>
       <div className='px-[25px] mt-[10px]'>
-        <strong className='block text-[24px] leading-8'>{profile?.login}</strong>
-        <span className='text-[16px] leading-[21px] opacity-60'>@{profile?.login}</span>
+        <strong className='block text-[24px] leading-8'>{profile?.login ? profile?.login : user.login}</strong>
+        <span className='text-[16px] leading-[21px] opacity-60'>@{profile?.login ? profile?.login : user.login}</span>
         <div className='mt-[15px] flex items-center gap-[5px]'>
           <DataIcon />
           <p className='text-[18px] leading-6 opacity-60'>Joined September 2024</p>

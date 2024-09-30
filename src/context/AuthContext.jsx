@@ -19,6 +19,7 @@ export const AuthContext = ({children}) => {
     }, [profile]);
 
     localStorage.setItem('path', activeSidebar)
+    localStorage.setItem('token', JSON.stringify(token))
 
     return (
         <Context.Provider value={{activeSidebar, profile, setProfile,setActiveSidebar,token, setToken, register, setRegister}}>{children}</Context.Provider>

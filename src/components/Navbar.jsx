@@ -10,6 +10,8 @@ import { Context } from '../context/AuthContext'
 
 function Navbar() {
  const {profile} = useContext(Context)
+ const user = JSON.parse(localStorage.getItem('token'))
+
   const navbarList = [
     {
       id: 1,
@@ -61,6 +63,8 @@ function Navbar() {
     },
   ]
  
+  console.log(profile);
+  
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -87,7 +91,7 @@ function Navbar() {
         <div className='flex items-center absolute bottom-7 '>
           <img className='w-[50px] h-[50px] rounded-full object-cover' src={profile?.avatar ? profile.avatar : Avatar} alt="icon" width={50} height={50} />
           <div className='ml-[10px] mr-[40px]'>
-            <strong className='font-semibold text-[16px] leading-[21px]'>{profile?.login}</strong>
+            <strong className='font-semibold text-[16px] leading-[21px]'>{profile?.login ? profile?.login : user.login}</strong>
             <p className='text-[16px] opacity-60'>@bobur_mavlonov</p>
           </div>
           <button onClick={handleLogout}><Dots /></button>

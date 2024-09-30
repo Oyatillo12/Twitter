@@ -9,6 +9,7 @@ import { Context } from '../context/AuthContext'
 
 function Home() {
   const {profile} = useContext(Context)
+  const user = JSON.parse(localStorage.getItem('token'))
 
   
   const [posts, setPosts] = useState(JSON.parse(localStorage.getItem('posts')) || [
@@ -62,7 +63,7 @@ function Home() {
     e.preventDefault();
     const data = {
       id: posts.length ? posts[posts.length - 1].id + 1 : 1,
-      avatar: profile.avatar ? profile.avatar : AvatarImg,
+      avatar: profile?.avatar ? profile.avatar : AvatarImg,
       name: profile.login,
       gmail: `@${profile.login} · 25m`,
       postDesk: postValue,
