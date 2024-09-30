@@ -23,12 +23,11 @@ const user = JSON.parse(localStorage.getItem('token'))
     e.preventDefault()
     const data = {
       login: userData,
-      password: profile.password,
+      password: user.password,
       avatar: avatar,
       profileImg: profileImg
     }
-
-   setProfile(data)
+    setProfile(data)
     setEditModal(false)
   }
 
