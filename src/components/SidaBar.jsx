@@ -8,7 +8,8 @@ import ImagesBlog from '../assets/images/posts.png'
 function SidaBar() {
 
   const { activeSidebar } = useContext(Context)
-
+    console.log(activeSidebar);
+    
 
 
   return (

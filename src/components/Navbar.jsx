@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Logo from '../assets/images/logo.svg'
 import { Link } from 'react-router-dom'
 import NavbarLinks from './NavbarLinks'
@@ -6,9 +6,10 @@ import { ActiveHomeIcon, BookmarksIcon, Dots, ExploreIcon, HomeIcon, ListsIcon, 
 import Button from './Button'
 import Avatar from '../assets/images/avatar.png'
 import Modal from './Modal'
+import { Context } from '../context/AuthContext'
 
 function Navbar() {
-  const user = JSON.parse(localStorage.getItem("token"))
+ const {profile} = useContext(Context)
   const navbarList = [
     {
       id: 1,
@@ -59,6 +60,7 @@ function Navbar() {
       path: '/more'
     },
   ]
+ 
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -83,9 +85,9 @@ function Navbar() {
         </div>
         <Button extraStyle={"w-[230px] py-[15px] mt-[30px] "} type={"button"}>Tweet</Button>
         <div className='flex items-center absolute bottom-7 '>
-          <img src={Avatar} alt="icon" width={50} height={50} />
+          <img className='w-[50px] h-[50px] rounded-full object-cover' src={profile?.avatar ? profile.avatar : Avatar} alt="icon" width={50} height={50} />
           <div className='ml-[10px] mr-[40px]'>
-            <strong className='font-semibold text-[16px] leading-[21px]'>{user.login}</strong>
+            <strong className='font-semibold text-[16px] leading-[21px]'>{profile?.login}</strong>
             <p className='text-[16px] opacity-60'>@bobur_mavlonov</p>
           </div>
           <button onClick={handleLogout}><Dots /></button>
@@ -98,8 +100,6 @@ function Navbar() {
           </div>
         </Modal>
       </div>
-
-
     </>
   )
 }

@@ -13,11 +13,7 @@ function PostsList({ item, onClick }) {
 
     const handleComment = () => {
         setCommented(!commented);
-        if (commented) {
-            setComments(comments - 1);
-        } else {
-            setComments(comments + 1);
-        }
+        commented ? setComments(comments - 1) : setComments(comments + 1)
     };
     const handleReport = () => {
         setReported(!reported);
@@ -25,19 +21,14 @@ function PostsList({ item, onClick }) {
     };
     const handleLike = () => {
         setLiked(!liked)
-        if (liked) {
-            setLikes(likes - 1);
-        } else {
-            setLikes(likes + 1);
-        }
-
+        liked ? setLikes(likes - 1) : setLikes(likes + 1)
     };
 
     return (
         <li className='p-5 border-b-[1px] border-b-[#D8D8D8] relative'>
             <div className='flex items-start justify-between'>
                 <div className='flex items-start space-x-[15px]'>
-                    <img className='w-[60px] h-[60px] rounded-full' src={item.avatar} alt="avatar icon" height={60} width={60} />
+                    <img className='w-[60px] h-[60px] rounded-full object-cover' src={item.avatar} alt="avatar icon" height={60} width={60} />
                     <div>
                         <strong className='mr-[5px] text-[20px] leading-[26px] font-bold' >{item.name}</strong>
                         <span className='text-black opacity-60 text-[18px] leading-6'>{item.gmail}</span>
@@ -56,7 +47,7 @@ function PostsList({ item, onClick }) {
                     <CommentIcon />
                     <span className='absolute my-auto ml-[15px] inset-y-0 text-[16px] leading-[21px]'>{comments ? comments : ""}</span>
                 </button>
-                <button onClick={handleReport} className={`relative text-[#536471]  ${reported ? "text-[#0CB245]" : ""} `}>
+                <button onClick={handleReport} className={`relative   ${reported ? " text-[#0CB245]" : "text-[#536471]"} `}>
                     <ReplyIcon />
                     <span className='absolute ml-[15px] text-[16px] top-[-3px] leading-[21px]'>{reports ? reports : ""}</span>
                 </button>

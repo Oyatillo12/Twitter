@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext,  useState } from 'react'
 import { CalendarIcon, CloseIcon, CommentIcon, Dots, GiftIcon, LikeIcon, ModeIcon, ReplyIcon, SaveImgIcon, ShareIcon, SimailIcon, StatsIcon } from '../assets/images/Icons'
 import AvatarImg from '../assets/images/avatar.png'
 import Button from '../components/Button'
 import Kebab from '../assets/images/kebab.png'
 import PostsList from '../components/PostsList'
 import LoadingImg from '../assets/images/loading.png'
+import { Context } from '../context/AuthContext'
 
 function Home() {
-  const user = JSON.parse(localStorage.getItem("token"))
+  const {profile} = useContext(Context)
+
+  
   const [posts, setPosts] = useState(JSON.parse(localStorage.getItem('posts')) || [
     {
       id: 1,
@@ -59,9 +62,9 @@ function Home() {
     e.preventDefault();
     const data = {
       id: posts.length ? posts[posts.length - 1].id + 1 : 1,
-      avatar: AvatarImg,
-      name: user.login,
-      gmail: `@${user.login} · 25m`,
+      avatar: profile.avatar ? profile.avatar : AvatarImg,
+      name: profile.login,
+      gmail: `@${profile.login} · 25m`,
       postDesk: postValue,
       likeCount: 0,
       commentCount: 0,
@@ -99,18 +102,25 @@ function Home() {
 
   }
 
+  const [mode, setMode] = useState(false)
+
+  function hadnleMode(){
+    document.documentElement.classList.toggle("dark")
+    setMode(!mode)
+  }
+
   return (
     <div className='overflow-y-auto h-[100vh] overflow-x-hidden'>
       <div className='flex items-center justify-between p-5 border-b-[1px] border-b-[#D8D8D8]'>
         <h2 className='font-bold text-[24px] leading-8'>Home</h2>
-        <button>
+        <button onClick={hadnleMode}>
           <ModeIcon />
         </button>
       </div>
       <form onSubmit={handleSubmitPost} className='p-5 border-b-[1px] border-b-[#D8D8D8] relative' autoComplete='off'>
         <div>
           <div className='flex items-center space-x-[15px] mb-5'>
-            <img className='rounded-full' src={AvatarImg} alt="Avatar Icon" height={60} width={60} />
+            <img className='rounded-full w-[60px] h-[60px] object-cover' src={profile?.avatar ? profile?.avatar : AvatarImg} alt="Avatar Icon" height={60} width={60} />
             <input onChange={(e) => setValue(e.target.value)} className='w-[88%] outline-none font-semibold text-[22px] leading-[29px]' type="text" required name='postValue' placeholder='What’s happening' />
           </div>
           {postImg ? <div className='pl-[80px] relative'>
