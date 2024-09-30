@@ -29,6 +29,8 @@ const user = JSON.parse(localStorage.getItem('token'))
     }
     setProfile(data)
     setEditModal(false)
+    setProfileImg(profileImg)
+    setAvatar(avatar)
   }
 
   const profileLinksList = [
@@ -55,8 +57,8 @@ const user = JSON.parse(localStorage.getItem('token'))
   ]
 
   return (
-    <>
-      <div className='pl-[31px] flex items-center space-x-10 pt-[22px] pb-[15px]'>
+    <div className='w-full overflow-y-auto h-[100vh]'>
+      <div className='w-full pl-[31px] flex items-center space-x-10 pt-[22px] pb-[15px]'>
         <button onClick={() => navigate(-1)}><BackIcon /></button>
         <div className='flex flex-col'>
           <strong className='text-[20px] mb-[2px] leading-[26px] font-bold'>{profile?.login ? profile?.login : user.login}</strong>
@@ -115,7 +117,7 @@ const user = JSON.parse(localStorage.getItem('token'))
           </label>
         </form>
       </div>}
-    </>
+    </div>
   )
 }
 
