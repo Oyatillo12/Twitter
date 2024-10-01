@@ -4,15 +4,18 @@ import SearchSideBar from './SearchSideBar'
 import SideTrends from './SideTrends'
 import RecommendUsers from './RecommendUsers'
 import ImagesBlog from '../assets/images/posts.png'
+import { useLocation } from 'react-router-dom';
 
 function SidaBar() {
+  const {pathname} = useLocation()
 
-  const { activeSidebar } = useContext(Context)
+ 
+  
  
 
   return (
     <div className='pl-7 w-[30%] pr-[60px] pt-5 overflow-y-auto h-[100vh] pb-[50px] border-l-[#D8D8D8] border-l-[1px]'>
-      {activeSidebar == '/' &&
+      {pathname == '/' &&
         <div>
           <SearchSideBar />
           <SideTrends />
@@ -32,7 +35,7 @@ function SidaBar() {
 
       }
 
-      {activeSidebar == '/profile' && <div>
+      {pathname.includes('/profile') && <div>
         
         <SearchSideBar />
         <img  src={ImagesBlog} alt='blog'  className='w-[100%] rounded-lg h-[178px] mt-[11px] object-cover' width={'100%'} height={178} />

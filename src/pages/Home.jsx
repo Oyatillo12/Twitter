@@ -8,7 +8,7 @@ import LoadingImg from '../assets/images/loading.png'
 import { Context } from '../context/AuthContext'
 
 function Home() {
-  const {profile} = useContext(Context)
+  const {profile, setUserPosts, userPosts} = useContext(Context)
   const user = JSON.parse(localStorage.getItem('token'))
 
   
@@ -62,10 +62,10 @@ function Home() {
   function handleSubmitPost(e) {
     e.preventDefault();
     const data = {
-      id: posts.length ? posts[posts.length - 1].id + 1 : 1,
-      avatar: profile?.avatar ? profile.avatar : AvatarImg,
-      name: profile.login,
-      gmail: `@${profile.login} · 25m`,
+      id: posts.length ? posts[posts.length - 1].id++ : 1,
+      avatar: user?.avatar ? user.avatar : AvatarImg,
+      name: user.login,
+      gmail: user?.email ? `@${user.email} · 25m` : `${user.login} · 25m`,
       postDesk: postValue,
       likeCount: 0,
       commentCount: 0,
@@ -75,6 +75,7 @@ function Home() {
     setIsLoading(true)
     setTimeout(() => {
       setPosts([data, ...posts])
+      setUserPosts([data, ...userPosts])
       setIsLoading(false)
       setPostImg(null)
       e.target.reset()
@@ -82,7 +83,6 @@ function Home() {
   }
 
   function handleMore(id) {
-
     const findedPosts = posts.find(post => post.id == id)
     setPost(findedPosts)
     setPostMoreOpen(true)
@@ -90,7 +90,6 @@ function Home() {
 
   function hadnleDelete() {
     const index = posts.findIndex(post => post.id == postinf.id)
-    
 
     setIsDeleteimg(true)
     setTimeout(() => {
@@ -121,7 +120,7 @@ function Home() {
       <form onSubmit={handleSubmitPost} className='p-5 border-b-[1px] border-b-[#D8D8D8] relative' autoComplete='off'>
         <div>
           <div className='flex items-center space-x-[15px] mb-5'>
-            <img className='rounded-full w-[60px] h-[60px] object-cover' src={profile?.avatar ? profile?.avatar : AvatarImg} alt="Avatar Icon" height={60} width={60} />
+            <img className='rounded-full w-[60px] h-[60px] object-cover' src={user?.avatar ? user?.avatar : AvatarImg} alt="Avatar Icon" height={60} width={60} />
             <input onChange={(e) => setValue(e.target.value)} className='w-[88%] outline-none font-semibold text-[22px] leading-[29px]' type="text" required name='postValue' placeholder='What’s happening' />
           </div>
           {postImg ? <div className='pl-[80px] relative'>

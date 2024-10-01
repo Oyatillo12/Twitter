@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Logo from '../assets/images/logo.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import NavbarLinks from './NavbarLinks'
-import { ActiveHomeIcon, BookmarksIcon, Dots, ExploreIcon, HomeIcon, ListsIcon, MassagesIcon, MoreICon, NotificationsIcon, ProfileFillIcon } from '../assets/images/Icons'
+import { ActiveHomeIcon, BookmarksIcon, Dots, ExploreIcon, HomeIcon, ListsIcon, MassagesIcon, MoreICon, NotificationsIcon, ProfileActiveIcon, ProfileFillIcon } from '../assets/images/Icons'
 import Button from './Button'
 import Avatar from '../assets/images/avatar.png'
 import Modal from './Modal'
@@ -11,13 +11,15 @@ import { Context } from '../context/AuthContext'
 function Navbar() {
  const {profile} = useContext(Context)
  const user = JSON.parse(localStorage.getItem('token'))
+ const path = location.pathname
+ const navigate = useNavigate()
 
   const navbarList = [
     {
       id: 1,
       title: "Home",
-      icon: <HomeIcon />,
-      path: '/'
+      icon: path == '/' ? <ActiveHomeIcon/> : <HomeIcon />,
+      path: '/',
     },
     {
       id: 2,
@@ -52,7 +54,7 @@ function Navbar() {
     {
       id: 7,
       title: "Profile",
-      icon: <ProfileFillIcon />,
+      icon: path.includes('/profile') ? <ProfileActiveIcon/> : <ProfileFillIcon />,
       path: '/profile'
     },
     {
@@ -62,9 +64,7 @@ function Navbar() {
       path: '/more'
     },
   ]
- 
-  console.log(profile);
-  
+   
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -74,8 +74,9 @@ function Navbar() {
   function handleClearUser() {
     localStorage.clear()
     window.location.reload()
+    navigate('/')
   }
-  return (
+  return ( 
     <>
       <div className='w-[25%] relative border-r-[#D8D8D8] border-r-[1px] h-[100vh] overflow-x-hidden overflow-y-auto pt-[31px] pr-[15px] pl-[120px]'>
         <Link to={'/'}>
@@ -89,9 +90,9 @@ function Navbar() {
         </div>
         <Button extraStyle={"w-[230px] py-[15px] mt-[30px] "} type={"button"}>Tweet</Button>
         <div className='flex items-center absolute bottom-7 '>
-          <img className='w-[50px] h-[50px] rounded-full object-cover' src={profile?.avatar ? profile.avatar : Avatar} alt="icon" width={50} height={50} />
+          <img className='w-[50px] h-[50px] rounded-full object-cover' src={user?.avatar ? user.avatar : Avatar} alt="icon" width={50} height={50} />
           <div className='ml-[10px] mr-[40px]'>
-            <strong className='font-semibold text-[16px] leading-[21px]'>{profile?.login ? profile?.login : user.login}</strong>
+            <strong className='font-semibold text-[16px] leading-[21px]'>{user.login}</strong>
             <p className='text-[16px] opacity-60'>@bobur_mavlonov</p>
           </div>
           <button onClick={handleLogout}><Dots /></button>
