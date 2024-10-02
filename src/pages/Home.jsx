@@ -97,15 +97,12 @@ function Home() {
   }
 
   function hadnleDelete() {
-    const index = posts.findIndex(post => post.id == postinf.id)
-
     setIsDeleteimg(true)
     setTimeout(() => {
-      posts.splice(index, 1)
-      setPost(null)
       setPostMoreOpen(false)
       setIsDeleteimg(false)
-      setPosts([...posts])
+      setPosts(posts.filter(post => post.id!= postinf.id))
+      setUserPosts(userPosts.filter(post => post.id!= postinf.id))
     }, 1000)
 
   }

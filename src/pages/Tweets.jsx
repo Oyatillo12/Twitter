@@ -6,7 +6,7 @@ import { PinIcon } from '../assets/images/Icons'
 
 
 function Tweets() {
-  const { userPosts, setUserPosts } = useContext(Context)
+  const { userPosts, setUserPosts,setPosts,posts } = useContext(Context)
   const [postOpenMore, setPostMoreOpen] = useState(false)
   const [postinf, setPost] = useState(null)
   const [isDeleteImg, setIsDeleteimg] = useState(false)
@@ -20,15 +20,12 @@ function Tweets() {
   }
 
   function hadnleDelete() {
-    const index = userPosts.findIndex(post => post.id == postinf.id)
-
     setIsDeleteimg(true)
     setTimeout(() => {
-      userPosts.splice(index, 1)
-      setPost(null)
       setPostMoreOpen(false)
       setIsDeleteimg(false)
-      setUserPosts([...userPosts])
+      setUserPosts(userPosts.filter(post => post.id!= postinf.id))
+      setPosts(posts.filter(post => post.id!= postinf.id))
     }, 1000)
 
   }
