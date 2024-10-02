@@ -8,8 +8,10 @@ import LoadingImg from '../assets/images/loading.png'
 import { Context } from '../context/AuthContext'
 
 function Home() {
-  const {profile, setUserPosts, userPosts} = useContext(Context)
+  const { setUserPosts, userPosts} = useContext(Context)
   const user = JSON.parse(localStorage.getItem('token'))
+  
+  
 
   
   const [posts, setPosts] = useState(JSON.parse(localStorage.getItem('posts')) || [
@@ -36,7 +38,7 @@ function Home() {
       postImage: null,
     },
     {
-      id: 3,
+      id: 3 ,
       avatar: AvatarImg,
       name: 'CreativePhoto',
       gmail: '@cloutexhibition · 1h',
@@ -47,6 +49,9 @@ function Home() {
       postImage: Kebab,
     },
   ])
+  const [idPosts, setIdPosts] = useState(posts.length + 1)
+
+  
 
   localStorage.setItem('posts', JSON.stringify(posts))
   const [isLoading, setIsLoading] = useState(false)
@@ -59,10 +64,13 @@ function Home() {
 
   const [postOpenMore, setPostMoreOpen] = useState(false)
 
+  
+
   function handleSubmitPost(e) {
     e.preventDefault();
+    setIdPosts(idPosts + 1)
     const data = {
-      id: posts.length ? posts[posts.length - 1].id++ : 1,
+      id: idPosts,
       avatar: user?.avatar ? user.avatar : AvatarImg,
       name: user.login,
       gmail: user?.email ? `@${user.email} · 25m` : `${user.login} · 25m`,
